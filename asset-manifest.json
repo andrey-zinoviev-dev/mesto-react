@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.1a41db2e.chunk.css",
-    "main.js": "/static/js/main.fcdf690a.chunk.js",
-    "main.js.map": "/static/js/main.fcdf690a.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e8402bce.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e8402bce.js.map",
-    "static/js/2.ee2076fc.chunk.js": "/static/js/2.ee2076fc.chunk.js",
-    "static/js/2.ee2076fc.chunk.js.map": "/static/js/2.ee2076fc.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.27f37c2a57b3200b9073a27c2b1d8abe.js": "/precache-manifest.27f37c2a57b3200b9073a27c2b1d8abe.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.1a41db2e.chunk.css.map": "/static/css/main.1a41db2e.chunk.css.map",
-    "static/js/2.ee2076fc.chunk.js.LICENSE.txt": "/static/js/2.ee2076fc.chunk.js.LICENSE.txt",
-    "static/media/Vector.svg": "/static/media/Vector.855a8c98.svg",
-    "static/media/like.svg": "/static/media/like.6c74d9b5.svg",
-    "static/media/index.css": "/static/media/like_active.9fdebb6b.svg"
+    "main.css": "./static/css/main.11ca3f91.chunk.css",
+    "main.js": "./static/js/main.86741d02.chunk.js",
+    "main.js.map": "./static/js/main.86741d02.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.a5163ae5.js",
+    "runtime-main.js.map": "./static/js/runtime-main.a5163ae5.js.map",
+    "static/js/2.ee2076fc.chunk.js": "./static/js/2.ee2076fc.chunk.js",
+    "static/js/2.ee2076fc.chunk.js.map": "./static/js/2.ee2076fc.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.4c50d156d723182237001a28bc602fb3.js": "./precache-manifest.4c50d156d723182237001a28bc602fb3.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.11ca3f91.chunk.css.map": "./static/css/main.11ca3f91.chunk.css.map",
+    "static/js/2.ee2076fc.chunk.js.LICENSE.txt": "./static/js/2.ee2076fc.chunk.js.LICENSE.txt",
+    "static/media/Vector.svg": "./static/media/Vector.855a8c98.svg",
+    "static/media/like.svg": "./static/media/like.6c74d9b5.svg",
+    "static/media/index.css": "./static/media/like_active.9fdebb6b.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e8402bce.js",
+    "static/js/runtime-main.a5163ae5.js",
     "static/js/2.ee2076fc.chunk.js",
-    "static/css/main.1a41db2e.chunk.css",
-    "static/js/main.fcdf690a.chunk.js"
+    "static/css/main.11ca3f91.chunk.css",
+    "static/js/main.86741d02.chunk.js"
   ]
 }
