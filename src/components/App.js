@@ -77,30 +77,31 @@ function App() {
   return (
     <div className="root">
       <Header />
-      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onDeleteClick={handleDeleteButtonClick}/>
+  <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onDeleteClick={handleDeleteButtonClick}/>
       <Footer />
-      <PopupWithForm name="popup" title="Редактировать профиль" children={<form name="popup" className="popup__form popup__form_type_user-edit" action="/" noValidate>
-                <input id="username-input" className="popup__input popup__input_order_first" name="username" type="text" required minLength="2" maxLength="40" pattern="[A-Za-zА-Яа-я -]{2,40}" autoComplete="off" />
-                <span id="username-input-error" className="popup__input-error-message"></span>
-                <input id="occupation-input" className="popup__input popup__input_order_second" name="occupation" type="text" required minLength="2" maxLength="200" pattern="[A-Za-zА-Яа-я -]{2,30}" autoComplete="off" />
-                <span id="occupation-input-error" className="popup__input-error-message popup__input-error-message_order_second"></span>
-                <button type="submit" className="popup__edit-button">Сохранить</button>
-            </form>} isOpen={isEditProfilePopupOpen} onClose={isEditProfilePopupClosed} closePopups={closeAllPopups}/>
-      <PopupWithForm name='popup_addCard' title="Новое место" children={<form name="popup_addCard" className="popup__form popup__form_type_addCard-form" action="/">
-                <input id="place-name-input" className="popup__input popup__input_order_first popup__input_place-name" name="place-name" type="text" placeholder="Название" required type="text" minLength="1" maxLength="30" autoComplete="off" />
-                <span id="place-name-input-error" className="popup__input-error-message"></span>
-                <input id="palce-image-link-input" className="popup__input popup__input_order_second popup__input_image-link" name="palce-image-link" placeholder="Ссылка на картинку" required type="url" autoComplete="off" />
-                <span id="palce-image-link-input-error" className="popup__input-error-message popup__input-error-message_order_second"></span>
-                <button type="submit" className="popup__edit-button popup__edit-button_action_addCard">Сохранить</button>
-            </form>} isOpen={isAddPlacePopupOpen} onClose={isAddPlacePopupClosed} closePopups={closeAllPopups}/>
-      <PopupWithForm name="popup_avatar-edit" title="Обновить аватар" children={<form name="popup_avatar-edit" className="popup__form popup__form_type_change-avatar" action="/">
-                <input type="url" className="popup__input popup__input_type_avatar-link" name="avatar-link" id="avatar-link-input" placeholder="Ссылка на картинку" required autoComplete="off" />
-                <span className="popup__input-error-message" id="avatar-link-input-error"></span>
-                <button type="submit" className="popup__edit-button">Сохранить</button>
-            </form>} isOpen={isEditAvatarPopupOpen} onClose={isEditAvatarPopupClosed} closePopups={closeAllPopups}/>
-      <PopupWithForm name="popup_delete-image" title="Вы уверены?" children={<div className="popup__wrapper">
-                <button className="popup__edit-button">Да</button>
-            </div>} isOpen={isDeleteCardPopupOpen} onClose={isDeleteCardPopupClosed} closePopups={closeAllPopups}/>
+      <PopupWithForm name="popup" title="Редактировать профиль" formClass="popup__form_type_user-edit" submitButtonClass="" submitButtonText="Сохранить" isOpen={isEditProfilePopupOpen} onClose={isEditProfilePopupClosed} closePopups={closeAllPopups}>
+        <>
+        <input id="username-input" className="popup__input popup__input_order_first" name="username" type="text" required minLength="2" maxLength="40" pattern="[A-Za-zА-Яа-я -]{2,40}" autoComplete="off" />
+        <span id="username-input-error" className="popup__input-error-message"></span>
+        <input id="occupation-input" className="popup__input popup__input_order_second" name="occupation" type="text" required minLength="2" maxLength="200" pattern="[A-Za-zА-Яа-я -]{2,30}" autoComplete="off" />
+        <span id="occupation-input-error" className="popup__input-error-message popup__input-error-message_order_second"></span> 
+        </>
+      </PopupWithForm>
+      <PopupWithForm name='popup_addCard' title="Новое место" formClass="popup__form_type_addCard-form" submitButtonClass="popup__edit-button_action_addCard" submitButtonText="Сохранить" isOpen={isAddPlacePopupOpen} onClose={isAddPlacePopupClosed} closePopups={closeAllPopups}>
+        <>
+        <input id="place-name-input" className="popup__input popup__input_order_first popup__input_place-name" name="place-name" type="text" placeholder="Название" required type="text" minLength="1" maxLength="30" autoComplete="off" />
+        <span id="place-name-input-error" className="popup__input-error-message"></span>
+        <input id="palce-image-link-input" className="popup__input popup__input_order_second popup__input_image-link" name="palce-image-link" placeholder="Ссылка на картинку" required type="url" autoComplete="off" />
+        <span id="palce-image-link-input-error" className="popup__input-error-message popup__input-error-message_order_second"></span>
+        </>
+      </PopupWithForm>
+      <PopupWithForm name="popup_avatar-edit" title="Обновить аватар" formClass="popup__form_type_change-avatar" submitButtonClass="" submitButtonText="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={isEditAvatarPopupClosed} closePopups={closeAllPopups}>
+        <>
+        <input type="url" className="popup__input popup__input_type_avatar-link" name="avatar-link" id="avatar-link-input" placeholder="Ссылка на картинку" required autoComplete="off" />
+        <span className="popup__input-error-message" id="avatar-link-input-error"></span>
+        </>
+      </PopupWithForm>
+      <PopupWithForm name="popup_delete-image" title="Вы уверены?" formClass="popup__form_type_delete-card" submitButtonClass="" submitButtonText="Сохранить" isOpen={isDeleteCardPopupOpen} onClose={isDeleteCardPopupClosed} closePopups={closeAllPopups}/>
       <PopupWithImage card={selectedCard} onClose={selectedCardClosed} closePopups={closeAllPopups}/>
     </div>
   );

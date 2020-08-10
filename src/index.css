@@ -23,4 +23,5 @@
 @import url(./blocks/popup/__input/_image-link/popup__input_image-link.css);
 @import url(./blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(./blocks/popup/__input/_type/popup__input_type_avatar-link.css);
+@import url(./blocks/popup/__form/_type/popup__form_type_delete-card.css);
 @import url(./blocks/footer/footer.css);

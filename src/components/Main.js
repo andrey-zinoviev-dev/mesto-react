@@ -23,6 +23,9 @@ function Main (props) {
                 setUserName(data.name);
                 setUserDescription(data.about);
                 setUserAvatar(data.avatar);
+            })
+            .catch((err) => {
+                console.log(err);
             });
         }
 
@@ -37,6 +40,9 @@ function Main (props) {
             .then((data) => {
                 setCards(data);
             })
+            .catch((err) => {
+                console.log(err);
+            });
         }
 
         getCardsFromServer();
