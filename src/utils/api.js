@@ -35,8 +35,8 @@ class Api extends React.Component {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: formData.username,
-                about: formData.occupation
+                name: formData.name,
+                about: formData.about,
             })
         })
         .then(this._handleResponse)
@@ -47,8 +47,8 @@ class Api extends React.Component {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                link: formData['palce-image-link'],
-                name: formData['place-name']
+                link: formData.link,
+                name: formData.name
             })
         })
         .then(this._handleResponse)
@@ -83,7 +83,7 @@ class Api extends React.Component {
            method: 'PATCH',
            headers: this._headers,
            body: JSON.stringify({
-               avatar: formData
+               avatar: formData.avatar
            })
         })
         .then(this._handleResponse)
