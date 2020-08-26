@@ -28,19 +28,9 @@ function App() {
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
-  const [isEditProfilePopupClosed, setisEditProfilePopupClosed] = React.useState(false);
-
-  const [isAddCardPopupClosed, setIsAddCardPopupClosed] = React.useState(false);
-
-  const [isEditAvatarPopupClosed, setIsEditAvatarPopupClosed] = React.useState(false);
-
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
 
-  const [isDeleteCardPopupClosed, setIsDeleteCardPopupClosed] = React.useState(false);
-
   const [selectedCard, setSelectedCard] = React.useState(null);
-
-  const [selectedCardClosed, setSelectedCardClosed] = React.useState(false);
 
   const [currentUser, setCurrentUser] = React.useState();
 
@@ -50,35 +40,25 @@ function App() {
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
-    setIsEditAvatarPopupClosed(false);
   }
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
-    setisEditProfilePopupClosed(false);
   }
 
   function handleAddPlaceClick() {
     setIsAddCardPopupOpen(true);
-    setIsAddCardPopupClosed(false);
   }
 
   function closeAllPopups() {
-    setisEditProfilePopupClosed(true);
-    // setIsAddPlacePopupClosed(true);
-    setIsEditAvatarPopupClosed(true);
     setIsEditProfilePopupOpen(false);
     setIsAddCardPopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    // setIsAddPlacePopupOpen(false);
-    setIsDeleteCardPopupClosed(true);
     setSelectedCard(null);
-    setIsAddCardPopupOpen(false);
-    setSelectedCardClosed(true);
+    setIsDeleteCardPopupOpen(false);
   }
 
   function handleCardClick(data) {
-    setSelectedCardClosed(false);
     setSelectedCard(data);
   }
 
@@ -156,9 +136,8 @@ function App() {
   }
 
   function handleDeleteCardClick(card) {
-      setIsDeleteCardPopupOpen(true);
-      setIsDeleteCardPopupClosed(false);
       setDeletingCard(card._id);
+      setIsDeleteCardPopupOpen(true);
   }
 
   function handleCardDelete(id) {
@@ -188,13 +167,13 @@ function App() {
     <div className="root">
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
-        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleDeleteCardClick} user={currentUser} />
+        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleDeleteCardClick} />
         <Footer />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={isEditProfilePopupClosed} closePopups={closeAllPopups} onUpdateUser={handleUpdateUser} dataLoading={dataIsLoading} />
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={isEditAvatarPopupClosed} closePopups={closeAllPopups} onUpdateAvatar={handleAvatarUpdate} dataLoading={dataIsLoading} />
-        <AddCardPopup isOpen={isAddCardPopupOpen} onClose={isAddCardPopupClosed} closePopups={closeAllPopups} onAddCard={handleAddCard} dataLoading={dataIsLoading} />
-        <DeleteCardPopup deleteCard={deletingCard} isOpen={isDeleteCardPopupOpen} onClose={isDeleteCardPopupClosed} closePopups={closeAllPopups} onDeleteCard={handleCardDelete} dataLoading={dataIsLoading} />
-        <PopupWithImage card={selectedCard} onClose={selectedCardClosed} closePopups={closeAllPopups}/>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} closePopups={closeAllPopups} onUpdateUser={handleUpdateUser} dataLoading={dataIsLoading} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} closePopups={closeAllPopups} onUpdateAvatar={handleAvatarUpdate} dataLoading={dataIsLoading} />
+        <AddCardPopup isOpen={isAddCardPopupOpen} closePopups={closeAllPopups} onAddCard={handleAddCard} dataLoading={dataIsLoading} />
+        <DeleteCardPopup deleteCard={deletingCard} isOpen={isDeleteCardPopupOpen} closePopups={closeAllPopups} onDeleteCard={handleCardDelete} dataLoading={dataIsLoading} />
+        <PopupWithImage card={selectedCard} closePopups={closeAllPopups}/>
       </CurrentUserContext.Provider>
     </div>
   );
