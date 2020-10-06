@@ -10,6 +10,8 @@
 @import url(./__image-text/popup__image-text.css);
 @import url(./__overlay/popup__overlay.css);
 @import url(./__wrapper/popup__wrapper.css);
+@import url(./__registartion-status/popup__registartion-status.css);
+@import url(./__registration-message/popup__registration-message.css);
 .popup {
     display: flex;
     position: fixed;

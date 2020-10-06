@@ -8,7 +8,7 @@ import Footer from './Footer.js';
 
 import PopupWithImage from './PopupWithImage.js';
 
-import api from '../utils/api.js';
+import { api } from '../utils/api.js';
 
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
@@ -19,6 +19,18 @@ import {EditAvatarPopup} from "./EditAvatarPopup";
 import {DeleteCardPopup} from "./DeleteCardPopup";
 
 import {AddCardPopup} from "./AddCardPopup";
+
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom'; 
+
+import {Login} from './Login';
+
+import {Register} from './Register';
+
+import {InfoToolTip} from './InfoTooltip';
+
+import ProtectedRoute from './ProtectedRoute';
+
+import { authentificateOnLoad } from '../utils/mestoAuth';
 
 function App() {
 
@@ -37,6 +49,20 @@ function App() {
   const [deletingCard, setDeletingCard] = React.useState();
 
   const [dataIsLoading, setDataIsLoading] = React.useState(false);
+  //вот этот параметр отвечает за допуск к авторизированному роуту /
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  const [registered, setRegistered] = React.useState(false);
+
+  const [registrationStatusToggle, setRegistrationStatusToggle]= React.useState(false);
+
+  const [authentificatedUser, setAuthentificatedUser] = React.useState('');
+
+  const [headerType, setHeaderType] = React.useState("");
+
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  
+  const history = useHistory();
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -163,18 +189,70 @@ function App() {
     })
   }
 
+  function handleCloseRegistrationPopup() {
+    setRegistrationStatusToggle(false);
+  }
+  function handleRegistrationSubmit() {
+    setRegistrationStatusToggle(true);
+  }
+  function switchRegistrationMessage() {
+    setRegistered(true);
+  }
+  function enableLoggedInState() {
+    setLoggedIn(true);
+  }
+
+  function identifyHeaderType(data) {
+    setHeaderType(data);
+  }
+
+  function showUser(data) {
+    setAuthentificatedUser(data);
+  }
+  React.useEffect(() => {
+    if(localStorage.getItem('token')) {
+      const userToken = localStorage.getItem('token');
+      authentificateOnLoad(userToken)
+      .then((res) => {
+        if(res) {
+          enableLoggedInState();
+          setAuthentificatedUser(res.data.email)
+          history.push('/');
+        }
+      })
+    }
+  }, [loggedIn])
+
+  React.useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth);
+    })
+  }, [windowWidth]);
+
   return (
     <div className="root">
       <div className="container">
         <CurrentUserContext.Provider value={currentUser}>
-          <Header />
-          <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleDeleteCardClick} />
+          <Header loggedIn={loggedIn} user={authentificatedUser} type={headerType} width={windowWidth}/>
+            <Switch>
+              <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleDeleteCardClick} />
+              <Route path="/sign-in">
+                <Login handleLogin={enableLoggedInState} setTypeOfHeader={identifyHeaderType} showUser={showUser}/>
+              </Route>
+              <Route path="/sign-up">
+                <Register handleRegistrationSubmit={handleRegistrationSubmit} isRegistered={switchRegistrationMessage} setTypeOfHeader={identifyHeaderType}/>
+              </Route>
+              <Route>
+                {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+              </Route>
+            </Switch>
           <Footer />
           <EditProfilePopup isOpen={isEditProfilePopupOpen} closePopups={closeAllPopups} onUpdateUser={handleUpdateUser} dataLoading={dataIsLoading} />
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} closePopups={closeAllPopups} onUpdateAvatar={handleAvatarUpdate} dataLoading={dataIsLoading} />
           <AddCardPopup isOpen={isAddCardPopupOpen} closePopups={closeAllPopups} onAddCard={handleAddCard} dataLoading={dataIsLoading} />
           <DeleteCardPopup deleteCard={deletingCard} isOpen={isDeleteCardPopupOpen} closePopups={closeAllPopups} onDeleteCard={handleCardDelete} dataLoading={dataIsLoading} />
           <PopupWithImage card={selectedCard} closePopups={closeAllPopups}/>
+          <InfoToolTip isRegistered={registered} registeredPopup={registrationStatusToggle} closeRegistrationPopup={handleCloseRegistrationPopup} />
         </CurrentUserContext.Provider>
       </div>
     </div>
