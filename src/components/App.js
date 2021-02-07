@@ -209,19 +209,19 @@ function App() {
   function showUser(data) {
     setAuthentificatedUser(data);
   }
-  React.useEffect(() => {
-    if(localStorage.getItem('token')) {
-      const userToken = localStorage.getItem('token');
-      authentificateOnLoad(userToken)
-      .then((res) => {
-        if(res) {
-          enableLoggedInState();
-          setAuthentificatedUser(res.data.email)
-          history.push('/');
-        }
-      })
-    }
-  }, [loggedIn])
+  // React.useEffect(() => {
+  //   if(localStorage.getItem('token')) {
+  //     const userToken = localStorage.getItem('token');
+  //     authentificateOnLoad(userToken)
+  //     .then((res) => {
+  //       if(res) {
+  //         enableLoggedInState();
+  //         setAuthentificatedUser(res.data.email)
+  //         history.push('/');
+  //       }
+  //     })
+  //   }
+  // }, [loggedIn])
 
   React.useEffect(() => {
     window.addEventListener('resize', () => {

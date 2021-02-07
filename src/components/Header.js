@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import headerLogo from '../images/Vector.svg';
 import headerMenu from '../images/Group_5.png';
 import closeSign from '../images/Close-icon.png';
@@ -34,8 +34,8 @@ function Header(props) {
                 <div className="header__user-action">
                     {hideUser ? <img className="header__user-action-close" src={!showUser ? headerMenu : closeSign} alt="" onClick={handleShowUser}/> : ""}
                     {!hideUser ? <span className="header__user-action-email">{props.user}</span> : ""}
-                    {props.loggedIn && !hideUser ? <a className="header__action header__action_loggedIn" href="/" onClick={handleLogout}>Выйти</a> : ""}
-                    {!props.loggedIn && !hideUser ? <a className="header__action" href={loginType? "/sign-up" : "/sign-in"}>{loginType ? "Регистрация" : "Войти"}</a> : "" }
+                    {props.loggedIn && !hideUser ? <Link className="header__action header__action_loggedIn" to="/" onClick={handleLogout}>Выйти</Link> : ""}
+                    {!props.loggedIn && !hideUser ? <Link className="header__action" to={loginType? "/sign-up" : "/sign-in"}>{loginType ? "Регистрация" : "Войти"}</Link> : "" }
                 </div>
             </div>
         </header>

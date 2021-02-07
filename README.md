@@ -1,7 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Ссылка на проект
-[https://andrey-zinoviev-dev.github.io/mesto-react/index.html]
+[https://andrey-zinoviev-dev.github.io/mesto-react/]
+Проект- простая платформа с карточками, куда можно выкладывать картинки, их можно лайкать и убирать лайки у них.
+
+Ддля доступа нужно зарегистрироваться. Для этого нужно нажать на кнопу справа сверху "Регистрация"
 
 ## Available Scripts
 
